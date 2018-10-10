@@ -9,7 +9,7 @@ source("packages.r")
 ## parse HTML --------------------
 
 # parse with read_html
-parsed_doc <- read_html("https://google.com") 
+parsed_doc <- read_html("https://www.facebook.com") 
 parsed_doc
 
 # inspect parsed object

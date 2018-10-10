@@ -27,7 +27,7 @@ browseURL("http://ip-api.com/")
 library(ipapi)
 
 # function call
-ip_df <- geolocate(c(NA, "", "10.0.1.1", "72.33.67.89", "www.spiegel.de", "search.twitter.com"), .progress=TRUE)
+ip_df <- geolocate(c(NA, "", "10.0.1.1", "72.33.67.89", "www.nytimes.com", "search.twitter.com"), .progress=TRUE)
 View(ip_df)
 
 
@@ -43,14 +43,14 @@ browseURL("http://developer.nytimes.com/")
 
 # use API
 library(rtimes)
-load("/Users/s.munzert/Munzert Dropbox/Simon Munzert/rkeys.RDa")
+load("/Users/simonmunzert/Munzert Dropbox/Simon Munzert/rkeys.RDa")
 Sys.setenv(NYTIMES_AS_KEY = nytimes_apikey)
 
 terms <- c("John McCain", "Nancy Pelosi", "Bernie Sanders", "Al Franken", "Marco Rubio", "Paul Ryan", "Elizabeth Warren", "Mitch McConnell", "Tim Kaine", "Dianne Feinstein")
 
 nytimes_hits <- numeric()
 for(i in seq_along(terms)) {
-  nytimes_hits[i] <-  as_search(q = terms[i], begin_date = "20170103", end_date = '20180601')$meta$hits
+  nytimes_hits[i] <-  as_search(q = terms[i], begin_date = "20180101", end_date = '20180930')$meta$hits
   Sys.sleep(runif(1, 1, 2))
 }
 nytimes_hits_df <- data.frame(name = terms, nytimes_hits, stringsAsFactors = FALSE)
@@ -90,7 +90,7 @@ as.data.frame(ip_parsed, stringsAsFactors = FALSE)
 
 # modify call
 fromJSON("http://ip-api.com/json/72.33.67.89") %>% as.data.frame(stringsAsFactors = FALSE)
-fromJSON("http://ip-api.com/json/www.spiegel.de") %>% as.data.frame(stringsAsFactors = FALSE)
+fromJSON("http://ip-api.com/json/www.nytimes.com") %>% as.data.frame(stringsAsFactors = FALSE)
 
 # build function
 ipapi_grabber <- function(ip = "") {
@@ -98,5 +98,21 @@ ipapi_grabber <- function(ip = "") {
   dat
 }
 ipapi_grabber("193.17.243.1")
+
+
+
+## EXERCISES ----------
+
+# 1. familiarize yourself with the pageviews package! 
+
+# a) what functions does it provide and what do they do?
+# b) use the package to fetch page view statistics for the articles about Donald Trump and Hillary Clinton on the English Wikipedia, and plot them against each other in a time series graph!
+
+# 1. familiarize yourself with the OpenWeatherMap API!
+browseURL("http://openweathermap.org/current")
+
+# a) sign up for the API at the address below and obtain an API key!
+browseURL("http://openweathermap.org/api")
+# b) make a call to the API to find out the current weather conditions in Washington!
 
 

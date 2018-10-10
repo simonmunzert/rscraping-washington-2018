@@ -3,7 +3,7 @@
 p_needed <- c("rvest", # scraping suite
               "httr", "httpuv", # suites to ease HTTP communication
               "RSelenium", # access Selenium API
-              "rtweet", "ROAuth", "ggmap", # access various web APIs
+              "rtweet", "ROAuth", "ggmap", "ipapi", "rtimes", "pageviews", # access various web APIs
               "robotstxt", # parse robots.txt files
               "readr", # imports spreadsheet data
               "haven", # imports SPSS, Stata and SAS files

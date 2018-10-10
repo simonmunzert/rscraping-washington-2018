@@ -181,7 +181,7 @@ connections <- connections[!duplicated(connections),]
 connections$value <- 1
 nodesDF <- data.frame(name = names, group = 1)
 
-network_out <- forceNetwork(Links = connections, Nodes = nodesDF, Source = "from", Target = "to", Value = "value", NodeID = "name", Group = "group", zoom = TRUE, opacityNoHover = 3)
+network_out <- forceNetwork(Links = connections, Nodes = nodesDF, Source = "from", Target = "to", Value = "value", NodeID = "name", Group = "group", zoom = TRUE, fontSize = 14, opacityNoHover = 3)
 
 saveNetwork(network_out, file = 'connections.html')
 browseURL("connections.html")

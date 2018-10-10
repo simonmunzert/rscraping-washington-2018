@@ -4,11 +4,8 @@
 ### -----------------------------
 
 
-## load packages -----------------
+source("packages.r")
 
-library(rvest)
-library(stringr)
-library(magrittr)
 
 
 ## dealing with multiple pages ----------
@@ -29,7 +26,7 @@ browseURL("http://www.jstatsoft.org/")
 
 # construct list of urls
 baseurl <- "http://www.jstatsoft.org/article/view/v"
-volurl <- paste0("0", seq(1,85,1))
+volurl <- paste0("0", seq(1,86,1))
 volurl[1:9] <- paste0("00", seq(1, 9, 1))
 issurl <- paste0("0", seq(1,9,1))
 urls_list <- paste0(baseurl, volurl)

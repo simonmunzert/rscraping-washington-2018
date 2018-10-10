@@ -3,11 +3,7 @@
 ## scraping static pages
 ### -----------------------------
 
-
-## load packages -----------------
-
-library(rvest)
-library(stringr)
+source("packages.r")
 
 
 ## basic workflow of scraping with rvest  ----------
@@ -18,24 +14,20 @@ library(stringr)
 # provides very intuitive functions to import and process webpages
 
 # 1. specify URL
-url <- "https://www.nytimes.com"
+url <- "https://en.wikipedia.org/wiki/List_of_tallest_buildings_in_Washington,_D.C."
+
 
 # 2. download static HTML behind the URL and parse it
 url_parsed <- read_html(url)
 
 # 3. extract specific nodes with XPath
-headings_nodes <- html_nodes(url_parsed, xpath = "//*[@class = 'story-heading']")
+nodes <- html_nodes(url_parsed, xpath = '//td[2]/a[1]')
 
 # 4. extract content from nodes
-headings <- html_text(headings_nodes)
+article_links <- html_text(nodes)
 
-
-# 5. tidy headlines
-headings <- str_replace_all(headings, "\\n|\\t|\\r", " ") %>% str_trim()
-head(headings)
-length(headings)
-
-
+head(article_links)
+length(article_links)
 
 
 ## extract data from tables --------------
@@ -69,14 +61,35 @@ browseURL("http://selectorgadget.com/")
 # and follow the advice below: "drag this link to your bookmark bar: >>SelectorGadget>> (updated August 7, 2013)"
 
 ## SelectorGadget is magic. Proof:
-browseURL("https://www.nytimes.com")
 
-url <- "https://www.nytimes.com"
-xpath <-  '//*[contains(concat( " ", @class, " " ), concat( " ", "story-heading", " " ))]//a'
+url <- "https://www.washingtonpost.com"
+browseURL(url)
+
 url_parsed <- read_html(url)
-html_nodes(url_parsed, xpath = xpath) %>% html_text()
+
+headings_nodes <- html_nodes(url_parsed, xpath = '//*[(@id = "main-content")]//*[contains(concat( " ", @class, " " ), concat( " ", "text-align-inherit", " " ))]')
+
+headings <- html_text(headings_nodes)
+headings <- str_subset(headings, "^[:alnum:]")
+head(headings)
+length(headings)
 
 
 
+## EXERCISES ----------
 
+
+# 1. go to the following website
+browseURL("https://www.jstatsoft.org/about/editorialTeam")
+
+# a) which HTML features can be used to describe all names of the editorial team?
+# b) write a corresponding XPath expression that targets them, and apply it using rvest!
+# c) bonus: try and extract the full lines including the affiliation and count how many of the editors are at a statistics or mathematics department or institution!
+
+
+# 2. consider the table of tall buildings (300m+) currently under construction from https://en.wikipedia.org/wiki/List_of_tallest_buildings_in_the_world".
+
+# a) scrape it.
+# b) how many of those buildings are currently built in China? and in which city are most of the tallest buildings currently built?
+# c) what is the sum of heights of all of these buildings?
 

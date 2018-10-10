@@ -70,3 +70,27 @@ system("launchctl list")
 # 5. stop and unload it when desired
 system("launchctl stop spiegelheadlines")
 system("launchctl unload ~/Library/LaunchAgents/spiegelheadlines.plist")
+
+
+
+## EXERCISE -------
+
+
+# go to the following webpage.
+url <- "http://www.cses.org/datacenter/module4/module4.htm"
+browseURL(url)
+
+# the following piece of code identifies all links to resources on the webpage and selects the subset of links that refers to the survey questionnaire PDFs.
+library(rvest)
+page_links <- read_html(url) %>% html_nodes("a") %>% html_attr("href")
+survey_pdfs <- str_subset(page_links, "/survey")
+
+# a) set up folder data/cses-pdfs.
+
+# b) download a sample of 10 of the survey questionnaire PDFs into that folder using a for loop and the download.file() function.
+
+# c) check if the number of files in the folder corresponds with the number of downloads and list the names of the files.
+
+# d) inspect the files. which is the largest one?
+
+# e) zip all files into one zip file.
