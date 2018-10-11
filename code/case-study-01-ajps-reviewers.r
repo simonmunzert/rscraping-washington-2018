@@ -40,7 +40,7 @@ browseURL(url)
 ## step 2: retrieve pdfs
 # get page
 content <- read_html(url)
-# get anchor (<a href=...>) nodes via xpath
+ # get anchor (<a href=...>) nodes via xpath
 anchors <- html_nodes(content, xpath = "//a")
 # get value of anchors' href attribute
 hrefs <- html_attr(anchors, "href")
@@ -60,6 +60,7 @@ for(i in seq_along(pdfs)) {
 
 
 ## step 3: import pdf
+library(pdftools)
 rev_raw <- pdf_text("reviewers2015.pdf")
 class(rev_raw)
 rev_raw[1]

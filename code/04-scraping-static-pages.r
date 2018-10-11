@@ -15,7 +15,7 @@ source("packages.r")
 
 # 1. specify URL
 url <- "https://en.wikipedia.org/wiki/List_of_tallest_buildings_in_Washington,_D.C."
-
+browseURL(url)
 
 # 2. download static HTML behind the URL and parse it
 url_parsed <- read_html(url)
@@ -66,6 +66,11 @@ url <- "https://www.washingtonpost.com"
 browseURL(url)
 
 url_parsed <- read_html(url)
+
+xpath <- '//*[contains(concat( " ", @class, " " ), concat( " ", "text-align-inherit", " " ))] | //*[(@id = "f0HwxnQWxXu66r")]//*[contains(concat( " ", @class, " " ), concat( " ", "equalize-height-target", " " ))]'
+headings_nodes <- html_nodes(url_parsed, xpath = xpath)
+
+
 
 headings_nodes <- html_nodes(url_parsed, xpath = '//*[(@id = "main-content")]//*[contains(concat( " ", @class, " " ), concat( " ", "text-align-inherit", " " ))]')
 

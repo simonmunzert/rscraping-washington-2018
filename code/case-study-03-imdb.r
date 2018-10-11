@@ -49,12 +49,12 @@ searchElem$clickElement() # click on button
 
 # store index page
 output <- remDr$getPageSource(header = TRUE)
-write(output[[1]], file = "data/imdb-data-movies.html")
+write(output[[1]], file = "../data/imdb-data-movies.html")
 
 # close connection
 remDr$closeServer()
 
 # parse html
-content <- read_html("data/imdb-data-movies.html") 
+content <- read_html("../data/imdb-data-movies.html") 
 titles <- html_nodes(content, xpath = '//*[contains(concat( " ", @class, " " ), concat( " ", "lister-item-header", " " ))]//a') %>% html_text
 head(titles)

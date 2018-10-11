@@ -51,7 +51,7 @@ str_detect(affiliations, "tatisti|athemati") %>% table
 
 url <- "https://en.wikipedia.org/wiki/List_of_tallest_buildings_in_the_world"
 url_parsed <- read_html(url)
-tables <- html_table(url_parsed, fill = TRUE)
+ tables <- html_table(url_parsed, fill = TRUE)
 buildings <- tables[[6]]
 
 

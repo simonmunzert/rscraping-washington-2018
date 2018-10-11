@@ -51,7 +51,7 @@ length(list_files)
 # delete non-existing articles
 files_size <- sapply(list_files_path, file.size)
 table(files_size) %>% sort()
-delete_files <- list_files_path[files_size == 25566]
+delete_files <- list_files_path[files_size == 28346]
 sapply(delete_files, file.remove)
 list_files_path <-  list.files(folder, pattern = "0.*", full.names = TRUE) # update list of files
 

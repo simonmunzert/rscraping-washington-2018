@@ -78,3 +78,14 @@ tab <- tabs[[1]]
 # add names
 names(tab) <- c("title", "country", "year", "status", "type", "target")
 head(tab)
+
+
+
+## EXERCISES ----------
+
+# 1. check out the search form at imdb.com.
+browseURL("https://www.imdb.com/search/title")
+
+# a) using Selenium, specify a search that looks for movies containing the word "data" in the plot or technical info.
+# b) download the results of the search.
+# c) import the results into r and show the first couple of hits.
