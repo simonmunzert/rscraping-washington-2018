@@ -92,9 +92,10 @@ b1[c("lat", "lon")]
 # add background raster graphic
 library(OpenStreetMap)
 library(rgdal)
-map <- openmap(upperLeft = c(57.5, 5), lowerRight = c(43, 16), type = "bing")
-plot(map)
-points(pos$lon, pos$lat, col = "red")
+map <- openmap(upperLeft = c(55.5, 5), lowerRight = c(46, 16), type = "bing")
+
+pos_mercator <- projectMercator(pos$lat, pos$lon) %>% as.data.frame
+autoplot(map) + geom_point(aes(x, y), data=pos_mercator, size = .5, color = "red")
 
 
 
